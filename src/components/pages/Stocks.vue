@@ -1,37 +1,21 @@
 <template>
     <div class="row">
-        <div class="col-lg-6">
-            <div class="card">
-            <h4 class="card-header">Bitcoin <span class="card-price">(price: 110)</span></h4>
-            <div class="card-body">
-                <input type="text" class="form-control">
-                <button class="btn btn-success">Buy</button>
-            </div>
-            </div>
-        </div> 
+      <app-stock v-for="(coin, index) in coins" :coin="coin" :index="index" :key="coin.name"></app-stock>
     </div>
 </template>
 
 <script>
+  import Stock from './Stock.vue'
+
+  export default {
+    data() {
+      return {
+        coins: this.$store.state.coins
+      };
+    },
+    components: {
+      appStock: Stock
+    }
+  }
     
 </script>
-
-
-<style scoped>
-  .card {
-    margin-top: 40px;
-  }
-
-  .card-price {
-    font-size: 12px;
-  }
-
-  .card-body {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .form-control {
-    width: 30%;
-  }
-</style>
