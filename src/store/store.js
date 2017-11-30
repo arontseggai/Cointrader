@@ -1,10 +1,11 @@
 import Vue from 'vue';
+import Axios from 'axios';
 import Vuex from 'Vuex';
 
-Vue.use(Vuex);
+window.axios = Axios;
+window.axios.defaults.baseURL = 'https://vuejs-http-3a7ed.firebaseio.com';
 
-const INCREASE = 1;
-const DECREASE = 0;
+Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
@@ -56,7 +57,34 @@ export const store = new Vuex.Store({
             } else {
                 return;
             }
+        },
+        saveData: state => {
+            axios.put('data.json', state)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+              console.log(error);
+            });            
+        },
+        loadData: state => {
+            axios.get('data.json')
+                .then(response => {
+                    const resultArray = [];
+                    let data = response.data.coins;
+                    for (let key in data) {
+                      resultArray.push(data[key]);
+                    }
+  
+                    state.coins = resultArray;
+                    state.funds = response.data.funds;                 
+                })
+                .catch(error => {
+                    console.log(error);
+            });
         }
+
+
     },
     actions: {
         buyCoin: (context, payload) => {
@@ -67,6 +95,12 @@ export const store = new Vuex.Store({
         },
         endDay: context => {
             context.commit('endDay');
-        }
+        },
+        saveData: context => {
+            context.commit('saveData');
+        },
+        loadData: context => {
+            context.commit('loadData');
+        }        
     }
 });

@@ -20,9 +20,9 @@
                 Save & Load
                 </a>
                 <div class="dropdown-menu" :class="{ show: showDropDown }" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item">Save</a>
-                <a class="dropdown-item">Load</a>
-                <!-- <div class="dropdown-divider"></div> -->
+                <a class="dropdown-item" @click.prevent="saveAction">Save Data to Server</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" @click.prevent="loadAction">Load Data from Server</a>
                 </div>
             </li>
             <li>
@@ -44,8 +44,18 @@
         },
         methods: {
             ...mapActions([
-                'endDay'
-            ])
+                'endDay',
+                'saveData',
+                'loadData'
+            ]),
+            saveAction() {
+                this.saveData();
+                this.showDropDown = false;
+            },
+            loadAction() {
+                this.loadData();
+                this.showDropDown = false;
+            }
         }
     }
 </script>
