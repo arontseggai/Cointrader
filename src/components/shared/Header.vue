@@ -19,11 +19,13 @@
                 <a class="nav-link dropdown-toggle" @click="showDropDown = !showDropDown" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Save & Load
                 </a>
-                <div class="dropdown-menu" :class="{ show: showDropDown }" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" @click.prevent="saveAction">Save Data to Server</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" @click.prevent="loadAction">Load Data from Server</a>
-                </div>
+                <transition name="grow">
+                    <div class="dropdown-menu" :class="{ show: showDropDown }" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" @click.prevent="saveAction">Save Data to Server</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" @click.prevent="loadAction">Load Data from Server</a>
+                    </div>
+                </transition>
             </li>
             <li>
                 <span class="navbar-brand">Funds {{ this.$store.state.funds | currency }}</span>
@@ -59,3 +61,20 @@
         }
     }
 </script>
+
+<style>
+
+    .grow-enter {
+        height: 0;
+    }
+    .grow-enter-active {
+        height: 100%;
+    }
+    .grow-leave {
+        height: 100%;
+    }
+    .grow-leave-active {
+        height: 0;
+    }
+    
+</style>

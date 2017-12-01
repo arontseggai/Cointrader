@@ -17,6 +17,11 @@ export const store = new Vuex.Store({
             { name: 'Dash', price: 90, quantity: 0 }
         ]
     },
+    getters: {
+        getCoins: state => {
+            return state.coins;
+        }
+    },
     mutations: {
         buyCoin: (state , payload) => {
             let amount = payload.coin.price * parseInt(payload.quantity);
