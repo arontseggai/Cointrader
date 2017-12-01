@@ -4,7 +4,7 @@
         <h4 class="card-header">{{ coin.name }} <span class="card-price">(Price: {{ coin.price }} | Quantity: {{ coin.quantity }})</span></h4>
         <div class="card-body">
             <input v-model="quantity" type="text" class="form-control" placeholder="Quantity">
-            <button class="btn btn-primary" @click="sellCoin({ coin: coin, quantity: quantity, index: index})">Sell</button>
+            <button class="btn btn-primary" @click="sellCoinAction({ coin: coin, quantity: quantity, index: index})">Sell</button>
         </div>
         </div>
     </div>   
@@ -23,7 +23,11 @@
         methods: {
             ...mapActions([
                 'sellCoin'
-            ])
+            ]),
+            sellCoinAction(payload) {
+                this.sellCoin(payload);
+                this.quantity = '';
+            }
         }
     }
 </script>
