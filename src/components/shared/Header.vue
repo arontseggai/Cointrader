@@ -1,14 +1,14 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <router-link class="navbar-brand" to="/">Cointrader</router-link>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <router-link class="navbar-brand" to="/cointrader">Cointrader</router-link>
+        <button class="navbar-toggler" type="button" @click="toggleMobileNav = !toggleMobileNav">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-collapse" id="navbarSupportedContent" :class="{collapse: toggleMobileNav}">
             <ul class="navbar-nav mr-auto">
 
-            <router-link class="nav-item" to="/portfolio/" tag="li" active-class="active" ><a class="nav-link">Portfolio</a></router-link>
-            <router-link class="nav-item" to="/coins/" tag="li" active-class="active" ><a class="nav-link">Coins</a></router-link>
+            <router-link class="nav-item" to="/cointrader/portfolio/" tag="li" active-class="active" ><a class="nav-link">Portfolio</a></router-link>
+            <router-link class="nav-item" to="/cointrader/coins/" tag="li" active-class="active" ><a class="nav-link">Coins</a></router-link>
 
             </ul>
             <ul class="navbar-nav my-lg-0">
@@ -41,7 +41,8 @@
     export default {
         data() {
             return {
-                showDropDown: false
+                showDropDown: false,
+                toggleMobileNav: true
             };
         },
         computed: {
