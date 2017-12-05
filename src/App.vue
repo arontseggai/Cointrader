@@ -15,13 +15,11 @@
   import Header from './components/shared/Header.vue'
 
   export default {
-    data() {
-      return {
-        title: 'Hello peoples, Cmaan'
-      };
-    },
     components: {
       AppHeader: Header
+    },
+    created() {
+      this.$store.dispatch('initCoins');
     }
   }
 </script>
@@ -39,7 +37,7 @@
     animation: slide-out 0.3s ease-out forwards;
     transition: opacity 0.3s;
     opacity: 0;
-    position: absolute;    
+     
   }
 
   @keyframes slide-in {

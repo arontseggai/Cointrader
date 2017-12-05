@@ -1,13 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Axios from 'axios'
 import App from './App.vue'
 import { routes } from './routes'
 import { store } from './store/store'
 
 Vue.use(VueRouter);
 
-Vue.filter('currency', function (value) {
-  return '€' + parseFloat(value).toFixed(2);
+window.axios = Axios;
+window.axios.defaults.baseURL = 'https://vuejs-http-3a7ed.firebaseio.com';
+
+Vue.filter('currency', (value) => {
+  return '€' + value.toLocaleString();
 });
 
 const router = new VueRouter({

@@ -1,20 +1,20 @@
 <template>
     <div class="row">
-      <app-stock v-for="(coin, index) in getCoins" :coin="coin" :index="index" :key="coin.name"></app-stock>
+      <app-asset v-if="coin.quantity > 0" v-for="coin in coinPortfolio" :coin="coin"></app-asset>
     </div>
 </template>
 
 <script>
-  import Stock from './Stock.vue'
+  import Asset from './Asset.vue'
   import { mapGetters } from 'vuex'
 
   export default {
     components: {
-      appStock: Stock
+      appAsset: Asset
     },
     computed: {
       ...mapGetters([
-        'getCoins'
+        'coinPortfolio'
       ])
     }
   }

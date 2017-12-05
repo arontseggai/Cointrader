@@ -8,7 +8,7 @@
             <ul class="navbar-nav mr-auto">
 
             <router-link class="nav-item" to="/portfolio/" tag="li" active-class="active" ><a class="nav-link">Portfolio</a></router-link>
-            <router-link class="nav-item" to="/stocks/" tag="li" active-class="active" ><a class="nav-link">Stocks</a></router-link>
+            <router-link class="nav-item" to="/coins/" tag="li" active-class="active" ><a class="nav-link">Coins</a></router-link>
 
             </ul>
             <ul class="navbar-nav my-lg-0">
@@ -21,14 +21,14 @@
                 </a>
                 <transition name="grow">
                     <div class="dropdown-menu" :class="{ show: showDropDown }" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" @click.prevent="saveAction">Save Data to Server</a>
+                        <a class="dropdown-item" @click.prevent="saveDataAction">Save Data to Server</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" @click.prevent="loadAction">Load Data from Server</a>
+                        <a class="dropdown-item" @click.prevent="loadDataAction">Load Data from Server</a>
                     </div>
                 </transition>
             </li>
             <li>
-                <span class="navbar-brand">Funds {{ this.$store.state.funds | currency }}</span>
+                <span class="navbar-brand">Funds {{ funds | currency }}</span>
             </li>
             </ul>          
         </div>
@@ -36,27 +36,48 @@
 </template>
 
 <script>
-    import { mapActions } from 'vuex'
-    
+    import { mapActions } from 'vuex';
+
     export default {
         data() {
             return {
                 showDropDown: false
             };
         },
+        computed: {
+            funds() {
+                return this.$store.getters.funds;
+            }
+        },
         methods: {
             ...mapActions([
-                'endDay',
-                'saveData',
+                'randomizeCoins',
                 'loadData'
             ]),
-            saveAction() {
-                this.saveData();
-                this.showDropDown = false;
+            endDay() {
+                if(confirm('Are you sure you want to End the Day?')) {
+                    this.randomizeCoins();
+                }
             },
-            loadAction() {
-                this.loadData();
+            saveDataAction() {
                 this.showDropDown = false;
+                const data = {
+                    funds: this.$store.getters.funds,
+                    coins: this.$store.getters.coins,
+                    portfolio: this.$store.getters.coinPortfolio
+                };
+
+                axios.put('data.json', data)
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(error => {
+                  console.log(error);
+                });                
+            },
+            loadDataAction() {
+                this.showDropDown = false;
+                this.loadData();
             }
         }
     }

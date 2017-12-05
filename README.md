@@ -1,4 +1,4 @@
-# stocktrader
+# Cointrader
 
 > A Vue.js project
 
