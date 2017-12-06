@@ -1,56 +1,23 @@
 <template>
 <div>
-    <ul id="dropdown1" class="dropdown-content">
-        <router-link tag="li" @click.prevent="saveDataAction">Save Data to Server</router-link>
-        <router-link tag="li" @click.prevent="loadDataAction">Load Data from Server</router-link>
+    <ul class="dropdown" :class="{show: showDropdown}">
+        <a @click.prevent="saveDataAction">Save Data to Server</a>
+        <a @click.prevent="loadDataAction">Load Data from Server</a>
     </ul>
-    <nav>
+    <nav class="grey darken-4">
     <div class="nav-wrapper">
-        <router-link to="/cointrader/portfolio/" class="brand-logo">Cointrader</router-link>
-        <ul class="right hide-on-med-and-down">
+        <ul class="left hide-on-med-and-down">
+            <router-link to="/cointrader/" tag="li" active-class="active" ><a class="nav-link logo">Cointrader</a></router-link>
             <router-link to="/cointrader/portfolio/" tag="li" active-class="active" ><a class="nav-link">Portfolio</a></router-link>
             <router-link to="/cointrader/coins/" tag="li" active-class="active" ><a class="nav-link">Coins</a></router-link>
-        <!-- Dropdown Trigger -->
-        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Save & Load<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
+        <ul class="right hide-on-med-and-down">
+            <li><a class="dropdown-trigger" @click.prevent="showDropdown = !showDropdown">Save & Load<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li class="funds">{{ funds | currency }}</li>
+        </ul>        
     </div>
     </nav>
 </div>
-
-    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <router-link class="navbar-brand" to="/cointrader">Cointrader</router-link>
-        <button class="navbar-toggler" type="button" @click="toggleMobileNav = !toggleMobileNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse" id="navbarSupportedContent" :class="{collapse: toggleMobileNav}">
-            <ul class="navbar-nav mr-auto">
-
-            <router-link class="nav-item" to="/cointrader/portfolio/" tag="li" active-class="active" ><a class="nav-link">Portfolio</a></router-link>
-            <router-link class="nav-item" to="/cointrader/coins/" tag="li" active-class="active" ><a class="nav-link">Coins</a></router-link>
-
-            </ul>
-            <ul class="navbar-nav my-lg-0">
-            <li class="nav-item">
-                <a class="nav-link" @click.prevent="endDay">End Day<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" @click="showDropDown = !showDropDown" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Save & Load
-                </a>
-                <transition name="grow">
-                    <div class="dropdown-menu" :class="{ show: showDropDown }" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" @click.prevent="saveDataAction">Save Data to Server</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" @click.prevent="loadDataAction">Load Data from Server</a>
-                    </div>
-                </transition>
-            </li>
-            <li>
-                <span class="navbar-brand">Funds {{ funds | currency }}</span>
-            </li>
-            </ul>          
-        </div>
-    </nav> -->
 </template>
 
 <script>
@@ -59,7 +26,7 @@
     export default {
         data() {
             return {
-                showDropDown: false,
+                showDropdown: false,
                 toggleMobileNav: true
             };
         },
@@ -79,7 +46,7 @@
                 }
             },
             saveDataAction() {
-                this.showDropDown = false;
+                this.showDropdown = false;
                 const data = {
                     funds: this.$store.getters.funds,
                     coins: this.$store.getters.coins,
@@ -95,7 +62,7 @@
                 });                
             },
             loadDataAction() {
-                this.showDropDown = false;
+                this.showDropdown = false;
                 this.loadData();
             }
         }
@@ -103,6 +70,40 @@
 </script>
 
 <style>
+    .show {
+        display: block !important;
+    }
+    .dropdown {
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        right: 0;
+        margin-right: 8%;
+        margin-top: 53px;
+        border-radius: 0 0 2px 2px;
+        display: none;
+    }
+    .dropdown a {
+        font-size: 16px;
+        color: #26a69a;
+        display: block;
+        line-height: 22px;
+        background-color: #fff;
+        padding: 14px 16px;
+        cursor: pointer;    
+    }
+    .dropdown a:hover {
+        background-color: #212121;
+    }
+
+    .logo {
+        font-size: 26px;
+    }
+    .funds {
+        padding: 0 15px;
+        font-size: 26px;
+    }
 
     .grow-enter {
         height: 0;
@@ -116,5 +117,4 @@
     .grow-leave-active {
         height: 0;
     }
-    
 </style>

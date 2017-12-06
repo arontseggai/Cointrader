@@ -26,7 +26,10 @@
   }
 </script>
 
-<style>
+<style scoped>
+  .container {
+    padding-top: 100px;
+  }
   .slide-enter {
     opacity: 0;
   }

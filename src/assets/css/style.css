@@ -1,0 +1,13 @@
+body {
+    background: #6441A5;
+    background: -webkit-linear-gradient(to right, #2a0845, #6441A5);
+    background: linear-gradient(to right, #2a0845, #6441A5);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+nav {
+    position: fixed;
+    z-index: 100;
+    letter-spacing: 1px;
+}

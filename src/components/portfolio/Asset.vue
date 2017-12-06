@@ -1,20 +1,26 @@
 <template>
-    <div class="col-lg-6">
-        <div class="card">
-            <h4 class="card-header">{{ coin.name }} <span class="card-price">(Price: {{ coin.price }} | Quantity: {{ coin.quantity }})</span></h4>
-            <div class="card-body">
-                <input  v-model="quantity" 
-                        type="number" 
-                        class="form-control" 
-                        placeholder="Quantity"
-                        :class="{danger: insufficientQuantity}">
-                <button 
-                    class="btn btn-primary" 
-                    @click="sellCoinAction"
-                    :disabled="insufficientQuantity || quantity <= 0">{{ insufficientQuantity ? 'Not Enough Coins' : 'Sell' }}</button>
-            </div>
+    <div class="col s12 m6">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+            <span class="card-title">{{ coin.name }} <span class="card-price">(Price: {{ coin.price }} | Quantity: {{ coin.quantity }})</span></span>
+            <div class="row">
+                <div class="col s9">
+                    <div class="input-field">
+                        <input v-model="quantity" type="number" class="validate" placeholder="Quantity" :class="{danger: insufficientFunds}">
+                    </div>
+                </div>
+                <div class="col s3">
+                    <div class="input-field file-field">
+                        <button 
+                            class="waves-effect waves-light btn" 
+                            @click="sellCoinAction" 
+                            :disabled="insufficientQuantity || quantity <= 0">{{ insufficientQuantity ? 'Not Enough Coins' : 'Sell' }}</button>                                
+                    </div>
+                </div>
+            </div>            
         </div>
-    </div>   
+      </div>
+    </div> 
 </template>
 
 <script>
@@ -50,25 +56,7 @@
 </script>
 
 <style scoped>
-    .danger {
-        border: 1px solid red;
-    }
-    
-
-  .card {
-    margin-top: 40px;
-  }
-
   .card-price {
     font-size: 12px;
-  }
-
-  .card-body {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .form-control {
-    width: 30%;
   }
 </style>

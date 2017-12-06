@@ -5,6 +5,8 @@ import App from './App.vue'
 import { routes } from './routes'
 import { store } from './store/store'
 
+require('./assets/css/style.css')
+
 Vue.use(VueRouter);
 
 window.axios = Axios;

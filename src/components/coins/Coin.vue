@@ -3,30 +3,24 @@
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
             <span class="card-title">{{ coin.name }} <span class="card-price">(Price: {{ coin.price }})</span></span>
-            <div class="input-field">
-                <input v-model="quantity" type="number" class="validate" placeholder="Quantity" :class="{danger: insufficientFunds}">
+            <div class="row">
+                <div class="col s9">
+                    <div class="input-field">
+                        <input v-model="quantity" type="number" class="validate" placeholder="Quantity" :class="{danger: insufficientFunds}">
+                    </div>
+                </div>
+                <div class="col s3">
+                    <div class="input-field file-field">
+                        <button 
+                            class="waves-effect waves-light btn" 
+                            @click="buyCoinAction" 
+                            :disabled="insufficientFunds || quantity <= 0">{{ insufficientFunds ? 'Insufficient Funds' : 'Buy'  }}</button>                                
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="card-action">
-            <button 
-                class="waves-effect waves-light btn" 
-                @click="buyCoinAction" 
-                :disabled="insufficientFunds || quantity <= 0">{{ insufficientFunds ? 'Insufficient Funds' : 'Buy'  }}</button>
         </div>
       </div>
-    </div>
-
-        <!-- <div class="card">
-            <h4 class="card-header">{{ coin.name }} <span class="card-price">(Price: {{ coin.price }})</span></h4>
-            <div class="card-body">
-                <input v-model="quantity" type="number" class="form-control" placeholder="Quantity" :class="{danger: insufficientFunds}">
-                <button 
-                    class="btn btn-success" 
-                    @click="buyCoinAction" 
-                    :disabled="insufficientFunds || quantity <= 0">{{ insufficientFunds ? 'Insufficient Funds' : 'Buy'  }}</button>
-            </div>
-        </div> -->
-    </div>   
+    </div> 
 </template>
 
 <script>
@@ -72,5 +66,4 @@
     input {
         color: #fff; 
     }
-    
 </style>
