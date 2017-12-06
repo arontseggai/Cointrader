@@ -1,12 +1,14 @@
 <template>
   <div class="grid">
       <app-header></app-header>
-      <div class="row">
-        <div class="col-lg-10 offset-lg-1">
-          <transition name="slide" mode="out-in">
-            <router-view></router-view>
-          </transition>
-        </div>
+      <div class="container">
+        <div class="row">
+          <div class="col s12">
+            <transition name="slide" mode="out-in">
+              <router-view></router-view>
+            </transition>
+          </div>
+        </div>        
       </div>
   </div>
 </template>

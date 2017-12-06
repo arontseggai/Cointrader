@@ -1,5 +1,23 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div>
+    <ul id="dropdown1" class="dropdown-content">
+        <router-link tag="li" @click.prevent="saveDataAction">Save Data to Server</router-link>
+        <router-link tag="li" @click.prevent="loadDataAction">Load Data from Server</router-link>
+    </ul>
+    <nav>
+    <div class="nav-wrapper">
+        <router-link to="/cointrader/portfolio/" class="brand-logo">Cointrader</router-link>
+        <ul class="right hide-on-med-and-down">
+            <router-link to="/cointrader/portfolio/" tag="li" active-class="active" ><a class="nav-link">Portfolio</a></router-link>
+            <router-link to="/cointrader/coins/" tag="li" active-class="active" ><a class="nav-link">Coins</a></router-link>
+        <!-- Dropdown Trigger -->
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Save & Load<i class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+    </div>
+    </nav>
+</div>
+
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <router-link class="navbar-brand" to="/cointrader">Cointrader</router-link>
         <button class="navbar-toggler" type="button" @click="toggleMobileNav = !toggleMobileNav">
             <span class="navbar-toggler-icon"></span>
@@ -32,7 +50,7 @@
             </li>
             </ul>          
         </div>
-    </nav>
+    </nav> -->
 </template>
 
 <script>
