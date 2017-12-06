@@ -5,17 +5,17 @@
         <a @click.prevent="loadDataAction">Load Data from Server</a>
     </ul>
     <nav class="grey darken-4">
-    <div class="nav-wrapper">
-        <ul class="left hide-on-med-and-down">
-            <router-link to="/cointrader/" tag="li" active-class="active" ><a class="nav-link logo">Cointrader</a></router-link>
-            <router-link to="/cointrader/portfolio/" tag="li" active-class="active" ><a class="nav-link">Portfolio</a></router-link>
-            <router-link to="/cointrader/coins/" tag="li" active-class="active" ><a class="nav-link">Coins</a></router-link>
-        </ul>
-        <ul class="right hide-on-med-and-down">
-            <li><a class="dropdown-trigger" @click.prevent="showDropdown = !showDropdown">Save & Load<i class="material-icons right">arrow_drop_down</i></a></li>
-            <li class="funds">{{ funds | currency }}</li>
-        </ul>        
-    </div>
+        <div class="nav-wrapper">
+            <ul class="left hide-on-med-and-down">
+                <router-link to="/cointrader/" tag="li" active-class="active" ><a class="nav-link logo">Cointrader</a></router-link>
+                <router-link to="/cointrader/portfolio/" tag="li" active-class="active" ><a class="nav-link">Portfolio</a></router-link>
+                <router-link to="/cointrader/coins/" tag="li" active-class="active" ><a class="nav-link">Coins</a></router-link>
+            </ul>
+            <ul class="right hide-on-med-and-down">
+                <li><a class="dropdown-trigger" @click.prevent="showDropdown = !showDropdown">Save & Load<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li class="funds">{{ funds | currency }}</li>
+            </ul>       
+        </div>
     </nav>
 </div>
 </template>

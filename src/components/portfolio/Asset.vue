@@ -4,12 +4,12 @@
         <div class="card-content white-text">
             <span class="card-title">{{ coin.name }} <span class="card-price">(Price: {{ coin.price }} | Quantity: {{ coin.quantity }})</span></span>
             <div class="row">
-                <div class="col s9">
+                <div class="col s7">
                     <div class="input-field">
                         <input v-model="quantity" type="number" class="validate" placeholder="Quantity" :class="{danger: insufficientFunds}">
                     </div>
                 </div>
-                <div class="col s3">
+                <div class="col s5">
                     <div class="input-field file-field">
                         <button 
                             class="waves-effect waves-light btn" 
